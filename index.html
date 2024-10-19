@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - Practice</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        gap: 12px;
+        padding: 12px;
+        height: 100vh;
+        width: 100vw;
+        flex-wrap: wrap;
+        overflow: auto;
+      }
+      .title {
+        color: grey;
+        border-bottom: 3px solid grey;
+      }
+      .container {
+        height: fit-content;
+        width: fit-content;
+        border: 1px solid grey;
+        padding: 12px;
+        display: flex;
+        gap: 3px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: start;
+        border-radius: 3px;
+        overflow: auto;
+      }
+      #a-1,
+      #a-2,
+      #a-3 {
+        display: none;
+      }
+      #style-box {
+        height: 180px;
+        width: 180px;
+        border: 1px solid black;
+      }
+      .style-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      .style-wrapper button {
+        background-color: teal;
+        padding: 3px;
+        color: white;
+        border-radius: 6px;
+        outline: none;
+        border: none;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      form button {
+        width: fit-content;
+        margin-left: 55px;
+      }
+      #changecon {
+        height: 270px;
+        width: 500px;
+        border: 1px solid black;
+        position: relative;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+      #changecon .changecon-wrapper {
+        width: fit-content;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        padding: 10px;
+        gap: 9px;
+        top: 30%;
+        left: 0%;
+      }
+      #select-ele {
+        display: flex;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Variable Declare -->
+
+    <div class="container varible">
+      <h3 class="title">Varable</h3>
+      <h3>var name = "Jay";</h3>
+      <h3>let surName = "Dholakia";</h3>
+      <h3>Const age = 25;</h3>
+    </div>
+
+    <!-- DOM Selectors -->
+
+    <div class="container selectors">
+      <h3 class="title">DOM - Selectors</h3>
+      <h3>Id : <span>document.getElementById('');</span></h3>
+      <h3>Name :<span>document.getElementsByName('')[0];</span></h3>
+      <h3>Tag :<span>document.getElementsByTagName('')[0];</span></h3>
+      <h3>ClassName :<span>document.getElementsByClassName('')[0];</span></h3>
+      <h3>
+        Query Selectors :<span>document.querySelector('selector-name');</span>
+      </h3>
+      <h3>
+        Query Selectors All :<span
+          >document.querySelectorAll("selector-name");</span
+        >
+      </h3>
+    </div>
+
+    <!-- Get Data -->
+
+    <div class="container get-data">
+      <h3 class="title">Get Data From Element</h3>
+      <h3>Data List</h3>
+      <h3 id="jd">Data - 1</h3>
+      <h3 class="jd">Data - 2</h3>
+      <h3 name="jd">Data - 3</h3>
+    </div>
+
+    <!-- Interchange Data -->
+
+    <div class="container interchange">
+      <h3 class="title">Interchange Data</h3>
+      <p id="q-1">Q - 1 What is your Name ? :</p>
+      <p id="q-2">Q - 2 What is your SurName ? :</p>
+      <p id="q-3">Q - 3 What is your Age ? :</p>
+
+      <span id="a-1">Jay</span>
+      <span id="a-2">Dholakia</span>
+      <span id="a-3">25</span>
+    </div>
+
+    <!-- Styling With JS -->
+
+    <div class="container JS-CSS">
+      <h3 class="title">JS With CSS</h3>
+      <div class="box" id="style-box"></div>
+      <div class="style-wrapper">
+        <button id="style-1">Style-1</button>
+        <button id="style-2">Style-2</button>
+        <button id="style-3">Style-3</button>
+      </div>
+    </div>
+
+    <!-- Create New HTML Element With JS  -->
+
+    <div class="container create-box-js">
+      <h3 class="title">Create Box With JS</h3>
+      <div class="box" id="jsbox"></div>
+      <form>
+        <input type="text" name="height" placeholder="height" required />
+        <input type="text" name="width" placeholder="width" required />
+        <input type="text" name="border" placeholder="border" required />
+        <input type="text" name="radius" placeholder="radius" required />
+        <input type="text" name="margin" placeholder="margin" required />
+        <input type="color" name="bgcolor" />
+        <button id="create-box">Create</button>
+      </form>
+    </div>
+
+    <div class="container" id="changecon">
+      <h3>Change Container Color With JS</h3>
+      <div class="changecon-wrapper">
+        <button
+          style="background-color: red; color: white; padding: 3px"
+          id="red"
+        >
+          Red
+        </button>
+        <button
+          style="background-color: green; color: white; padding: 3px"
+          id="green"
+        >
+          Green
+        </button>
+        <button
+          style="background-color: blue; color: white; padding: 3px"
+          id="blue"
+        >
+          Blue
+        </button>
+      </div>
+    </div>
+
+    <div class="container" id="select-ele">
+      <div class="parent">
+        Parent
+        <div class="child-1">
+          Child-1
+          <div class="sub-child">Sub-child-1</div>
+          <div class="sub-child">Sub-child-2</div>
+          <div class="sub-child">Sub-child-3</div>
+        </div>
+        <div class="child-2">
+          Child-2
+          <div class="sub-child">Sub-child-1</div>
+          <div class="sub-child">Sub-child-2</div>
+          <div class="sub-child">Sub-child-3</div>
+        </div>
+        <div class="child-3">
+          Child-3
+          <div class="sub-child">Sub-child-1</div>
+          <div class="sub-child">Sub-child-2</div>
+          <div class="sub-child">Sub-child-3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="get-set-Attribute">
+      <h4 class="heading">Jay</h4>
+      <h4 class="title-1">Dholakia</h4>
+      <h4 class="subtitle">25</h4>
+    </div>
+
+    <div class="container" id="set-class">
+      <h5 class="fname lname age">
+        <b>Jay Dholakia 25</b>
+      </h5>
+    </div>
+    <div class="container" id="html-via-js"></div>
+    <script>
+      // Variable
+
+      console.log("Variable");
+
+      var name = "Jay ";
+      let surName = "Dholaka";
+      const age = 25;
+
+      console.log("name : ", name, "Surname : ", surName, "Age : ", age);
+
+      console.log(
+        "-----------------------------------------------------------------"
+      );
+
+      // Selectors
+      console.log("Selectors");
+      console.log('document.getElementById("")');
+      console.log('document.getElementsByName("")[0]');
+      console.log('document.getElementsByTagName("")[0]');
+      console.log('document.getElementsByClassName("")[0]');
+      console.log('document.querySelector("selector-name")');
+      console.log('document.querySelectorAll("selector-name")');
+
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // Get Data
+
+      id = document.getElementById("jd");
+      cname = document.getElementsByClassName("jd")[0];
+      nname = document.getElementsByName("jd")[0];
+      console.log("Get Data From Elements");
+      console.log(
+        "By Id : ",
+        id.innerText,
+        "By Class Name : ",
+        cname.innerText,
+        "By Name : ",
+        nname.innerText
+      );
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // InterChange Data
+
+      q1 = document.getElementById("q-1");
+      q2 = document.getElementById("q-2");
+      q3 = document.getElementById("q-3");
+
+      a1 = document.getElementById("a-1");
+      a2 = document.getElementById("a-2");
+      a3 = document.getElementById("a-3");
+
+      console.log(
+        q1.innerText + a1.innerText,
+        q2.innerText + a2.innerText,
+        q3.innerText + a3.innerText
+      );
+
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // Css with Js
+
+      style1 = document.getElementById("style-1");
+      style2 = document.getElementById("style-2");
+      style3 = document.getElementById("style-3");
+
+      s1 = "background-color:red; border-radius:36%; border:3px solid yellow;";
+      s2 = "background-color:yellow; border-radius:63%; border:6px solid blue;";
+      s3 = "background-color:gold; border-radius:72%; border:9px solid black;";
+
+      stylebox = document.getElementById("style-box");
+
+      style1.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        stylebox.style.cssText = s1;
+      });
+
+      style2.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        stylebox.style.cssText = s2;
+      });
+
+      style3.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        stylebox.style.cssText = s3;
+      });
+
+      // q1.innerText += a1.innerText;
+      // q2.innerText += a2.innerText;
+      // q3.innerText += a3.innerText;
+
+      // console.log("Interchange Data");
+
+      // console.log(q1.innerText, q2.innerText, q3.innerText);
+
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // Create Box With JS
+
+      h = document.getElementsByName("height")[0];
+      w = document.getElementsByName("width")[0];
+      b = document.getElementsByName("border")[0];
+      r = document.getElementsByName("radius")[0];
+      m = document.getElementsByName("margin")[0];
+      c = document.getElementsByName("bgcolor")[0];
+      btn = document.getElementById("create-box");
+
+      cbox = document.getElementById("jsbox");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        cbox.style.cssText = `
+      height:${h.value};
+      width:${w.value};
+      border:${b.value};
+      border-radius:${r.value};
+      margin:${m.value};
+      background-color:${c.value};
+      `;
+      });
+
+      // Create Element...
+      firstEle = document.createElement("span");
+      secondEle = document.createElement("span");
+      thirdEle = document.createElement("span");
+      fourthEle = document.createElement("span");
+      fifthEle = document.createElement("span");
+      sixthEle = document.createElement("span");
+      // Create in Class in Created Element...
+      firstEle.classList.add("name");
+      secondEle.classList.add("surname");
+      thirdEle.classList.add("age");
+      fourthEle.classList.add("address");
+      fifthEle.classList.add("pin");
+      sixthEle.classList.add("area");
+      // Add Text In Created Elemet...
+      firstEle.innerText = "Jay";
+      secondEle.innerText = "dholakia";
+      thirdEle.innerText = "25";
+      fourthEle.innerText = "Rajkot";
+      fifthEle.innerText = "360007";
+      sixthEle.innerText = "150ft Road";
+      // Print...
+      console.log(firstEle);
+      console.log(secondEle);
+      console.log(thirdEle);
+      console.log(fourthEle);
+      console.log(fifthEle);
+      console.log(sixthEle);
+
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // HTML Via JS
+
+      const con = document.getElementById("html-via-js");
+      con.innerHTML = "<b>Already Some Text Is Here !!! </b>";
+      con.style.cssText = `height:300px; width:200px; border:1px solid grey;`;
+
+      //Before Tag
+      con.before(firstEle);
+
+      // Before Existing Content...
+      con.prepend(secondEle);
+      con.prepend(thirdEle);
+
+      // After Existing Content...
+      con.append(fourthEle);
+      con.append(fifthEle);
+
+      // After Tag
+      con.after(sixthEle);
+
+      console.log(
+        "-------------------------------------------------------------------"
+      );
+
+      // Change BG With JS
+
+      changecon = document.getElementById("changecon");
+      changebtn1 = document.getElementById("red");
+      changebtn2 = document.getElementById("green");
+      changebtn3 = document.getElementById("blue");
+
+      changebtn1.addEventListener("click", (e) => {
+        e.preventDefault();
+        changecon.style.backgroundColor = `red`;
+        changecon.style.color = `white`;
+      });
+      changebtn2.addEventListener("click", (e) => {
+        e.preventDefault();
+        changecon.style.backgroundColor = `green`;
+        changecon.style.color = `white`;
+      });
+      changebtn3.addEventListener("click", (e) => {
+        e.preventDefault();
+        changecon.style.backgroundColor = `blue`;
+        changecon.style.color = `white`;
+      });
+
+      // Select Ele
+
+      const parentEle = document.getElementsByClassName("parent")[0];
+
+      console.log("Father Of this Element ", parentEle.parentElement);
+      console.log("Child of this Element ", parentEle.children);
+      console.log("First Child ", parentEle.firstChild);
+      console.log("First Child Element ", parentEle.firstElementChild);
+      console.log("Last Child ", parentEle.lastChild);
+      console.log("Last Child Element", parentEle.lastElementChild);
+      console.log("First Child Index", parentEle.children[0]);
+      console.log(
+        "First Child Next Element ",
+        parentEle.children[0].nextElementSibling
+      );
+      console.log(
+        "Second Child Next Element ",
+        parentEle.children[1].nextElementSibling
+      );
+      console.log(
+        "Third Child Previous Element ",
+        parentEle.children[2].previousElementSibling
+      );
+      console.log(
+        "Second Child Next Element ",
+        parentEle.children[1].previousElementSibling
+      );
+      console.log("Child Count total of child ", parentEle.childElementCount);
+
+      // Get Set Attribute
+
+      const heading = document.getElementsByTagName("h4")[0];
+      const title = document.getElementsByTagName("h4")[1];
+      const subtitle = document.getElementsByTagName("h4")[2];
+      console.log(heading, title, subtitle);
+
+      console.log("Get Attribute Class Name :", heading.getAttribute("class"));
+      console.log("Get Attribute Class Name :", title.getAttribute("class"));
+      console.log("Get Attribute Class Name :", subtitle.getAttribute("class"));
+
+      heading.setAttribute("name", "heading-1");
+      title.setAttribute("name", "title-1");
+      subtitle.setAttribute("name", "subtitle-1");
+
+      console.log("Get Attribute Name : ", heading.getAttribute("name"));
+      console.log("Get Attribute Name : ", title.getAttribute("name"));
+      console.log("Get Attribute Name : ", subtitle.getAttribute("name"));
+
+      heading.removeAttribute("name");
+      title.removeAttribute("name");
+      subtitle.removeAttribute("name");
+
+      console.log(heading, title, subtitle);
+
+      console.log(heading.innerText, title.innerText, subtitle.innerText);
+
+      //  Set Classes with JS
+
+      cname = document.getElementsByTagName("h5")[0];
+
+      // As String
+      console.log("Class List As String :", cname.className);
+
+      // As Array List not Array
+      console.log("Class Name Like ArrayList : ", cname.classList);
+
+      console.log("Class Name By Index :", cname.classList[0]);
+      console.log("Class Name By Index :", cname.classList[1]);
+      console.log("Class Name By Index :", cname.classList[2]);
+
+      // Add Class
+
+      cname.classList.add("address");
+      console.log("Class Name By Index : ", cname.classList[3]);
+
+      // Remove Class
+      cname.classList.remove("address");
+      console.log(cname);
+
+      // ADD Multiple Class
+      cname.classList.add("area", "pincode", "city");
+
+      console.log(cname);
+
+      //  Remove Multiple Class
+      cname.classList.remove("area", "pincode", "city");
+      console.log(cname);
+    </script>
+  </body>
+</html>
