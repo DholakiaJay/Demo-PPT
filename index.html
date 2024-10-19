@@ -3,538 +3,599 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS - Practice</title>
+    <title>DOM</title>
     <style>
       * {
-        padding: 0;
-        margin: 0;
         box-sizing: border-box;
-      }
-      body {
-        display: flex;
-        gap: 12px;
-        padding: 12px;
-        height: 100vh;
-        width: 100vw;
-        flex-wrap: wrap;
-        overflow: auto;
-      }
-      .title {
-        color: grey;
-        border-bottom: 3px solid grey;
+        font-size: large;
       }
       .container {
-        height: fit-content;
-        width: fit-content;
-        border: 1px solid grey;
-        padding: 12px;
         display: flex;
-        gap: 3px;
-        flex-direction: column;
-        flex-wrap: wrap;
         justify-content: center;
-        align-items: start;
-        border-radius: 3px;
-        overflow: auto;
-      }
-      #a-1,
-      #a-2,
-      #a-3 {
-        display: none;
-      }
-      #style-box {
-        height: 180px;
-        width: 180px;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 600px;
         border: 1px solid black;
       }
-      .style-wrapper {
+      .container img {
+        height: 80%;
+        width: 100%;
+        object-fit: contain;
+      }
+      .parent-box {
+        height: 300px;
+        width: 600px;
+        border: 1px solid black;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .parent-box .child-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        height: 270px;
+        width: 450px;
+        border: 1px solid black;
+      }
+      .parent-box .child-box .sub-child {
+        height: 60px;
+        width: 60px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 900;
+      }
+      button {
+        padding: 10px;
+        margin: 12px;
+        border-radius: 12px;
+        box-shadow: 3px 3px 10px 0px rgba(128, 128, 128, 0.51);
+      }
+      .click {
+        background-color: green;
+        color: white;
+        box-shadow: 3px 3px 10px 0px rgb(163, 227, 163);
+      }
+      .dblclick {
+        background-color: blue;
+        color: yellow;
+        box-shadow: 3px 3px 10px 0px rgb(169, 169, 220);
+      }
+      .mouseover {
+        background-color: burlywood;
+        color: black;
+        box-shadow: 3px 3px 10px 0px rgb(230, 140, 107);
+      }
+      .mouseenter {
+        background-color: rgb(102, 17, 182);
+        color: white;
+        box-shadow: 3px 3px 10px 0px rgba(255, 255, 0, 0.515);
+      }
+      /* .p-5 form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        gap: 3px;
+      }
+      .p-5 form input {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid grey;
+        border-radius: 3px;
+      }
+       */
+      .p-5 {
+        padding: 12px;
+        width: 100%;
+        border: 1px solid;
+      }
+      .p-5 .createboxcontainer {
+        height: 100%;
+        width: 100%;
+
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        border: 1px solid grey;
+        overflow: auto;
+      }
+      .p-5 .createboxcontainer form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        gap: 10px;
+        width: 33%;
+      }
+      .p-5 .createboxcontainer form label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3px;
         width: 100%;
       }
-      .style-wrapper button {
-        background-color: teal;
-        padding: 3px;
-        color: white;
-        border-radius: 6px;
-        outline: none;
-        border: none;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-      form button {
-        width: fit-content;
-        margin-left: 55px;
-      }
-      #changecon {
-        height: 270px;
-        width: 500px;
+      #stylebox {
+        margin: 50px auto;
+        height: 300px;
+        width: 450px;
         border: 1px solid black;
-        position: relative;
         display: flex;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
       }
-      #changecon .changecon-wrapper {
-        width: fit-content;
-        position: absolute;
+      .styleboxcontainer ul {
         display: flex;
-        flex-direction: column;
-        height: fit-content;
-        padding: 10px;
-        gap: 9px;
-        top: 30%;
-        left: 0%;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
       }
-      #select-ele {
-        display: flex;
-        padding: 10px;
+      .styleboxcontainer ul li {
+        text-decoration: none;
+        list-style-type: none;
+      }
+      .styleboxcontainer ul li button {
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: large;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+          rgba(17, 17, 26, 0.1) 0px 8px 24px,
+          rgba(17, 17, 26, 0.1) 0px 16px 56px;
       }
     </style>
   </head>
   <body>
-    <!-- Variable Declare -->
+    <p>
+      <b>What is DOM ?</b> When a web page is loaded, the browser creates a
+      Document Object Model of the page.
+    </p>
+    <p>
+      <b>The DOM defines a standard for accessing documents:</b>
 
-    <div class="container varible">
-      <h3 class="title">Varable</h3>
-      <h3>var name = "Jay";</h3>
-      <h3>let surName = "Dholakia";</h3>
-      <h3>Const age = 25;</h3>
-    </div>
-
-    <!-- DOM Selectors -->
-
-    <div class="container selectors">
-      <h3 class="title">DOM - Selectors</h3>
-      <h3>Id : <span>document.getElementById('');</span></h3>
-      <h3>Name :<span>document.getElementsByName('')[0];</span></h3>
-      <h3>Tag :<span>document.getElementsByTagName('')[0];</span></h3>
-      <h3>ClassName :<span>document.getElementsByClassName('')[0];</span></h3>
-      <h3>
-        Query Selectors :<span>document.querySelector('selector-name');</span>
-      </h3>
-      <h3>
-        Query Selectors All :<span
-          >document.querySelectorAll("selector-name");</span
+      "The Document Object Model (DOM) is a platform and interface that allows
+      programs and scripts to dynamically access and update the content,
+      structure, and style of a document."
+    </p>
+    <p>
+      <b>The DOM standard is separated into 3 different parts:</b>
+      <br />
+      <b>Core DOM -</b>
+      standard model for all document types
+      <br />
+      <b>XML DOM - </b>standard model for XML documents
+      <br />
+      <b>HTML DOM -</b> standard model for HTML documents
+    </p>
+    <span>
+      <p><b>What is the HTML DOM?</b></p>
+      <p>
+        <b
+          >The HTML DOM is a standard object model and programming interface for
+          HTML. <br />It defines:</b
         >
-      </h3>
+        The HTML elements as objects<br />
+        The properties of all HTML elements<br />
+        The methods to access all HTML elements<br />
+        The events for all HTML elements<br />
+        In other words: The HTML DOM is a standard for how to get, change, add,
+        or delete HTML elements.
+      </p>
+    </span>
+    <div class="container">
+      <span>The HTML DOM model is constructed as a tree of Objects:</span>
+      <img src="https://www.w3schools.com/js/pic_htmltree.gif" alt="" />
+    </div>
+    <p>
+      <b> With the object model, JavaScript gets all the power</b>
+
+      JavaScript can change all the HTML elements in the page<br />
+      JavaScript can change all the HTML attributes in the page<br />
+      JavaScript can change all the CSS styles in the page<br />
+      JavaScript can remove existing HTML elements and attributes<br />
+      JavaScript can add new HTML elements and attributes<br />
+      JavaScript can react to all existing HTML events in the page<br />
+      JavaScript can create new HTML events in the page<br />
+    </p>
+
+    <!-- 2 -->
+
+    <hr />
+    <p>
+      HTML DOM methods are actions you can perform (on HTML Elements).<br />
+
+      HTML DOM properties are values (of HTML Elements) that you can set or
+      change.
+    </p>
+
+    <p>
+      A property is a value that you can get or set (like changing the content
+      of an HTML element).<br />
+
+      A method is an action you can do (like add or deleting an HTML element).
+    </p>
+
+    <div class="p-1 ex">
+      <p id="demo"></p>
+
+      <script>
+        document.getElementById("demo").innerHTML =
+          "<b><i>Hello World!</i></b>";
+      </script>
+    </div>
+    <p>
+      In the example above, getElementById is a method, while innerHTML is a
+      property.
+    </p>
+    <p>
+      The most common way to access an HTML element is to use the id of the
+      element.
+
+      <br />In the example above the getElementById method used id="demo" to
+      find the element.
+    </p>
+    <p>
+      Methods : <br />
+      <b> document.getElementById(id) </b>: Find an element by element id <br />
+      <b> document.getElementsByTagName(name) </b>: Find elements by tag name<br />
+      <b> document.getElementsByClassName(name) </b>: Find elements by class
+      name<br />
+      <b>document.querySelector('Selector Name')</b> : Find elements by
+      tagname,classname,id or names<br />
+      <b>document.querySelectorAll('Selector Name')</b> : Find multiple elements
+      with same names<br />
+
+      <b>document.createElement(element)</b> Create an HTML element<br />
+      <b>document.removeChild(element)</b> Remove an HTML element<br />
+      <b>document.appendChild(element)</b> Add an HTML element<br />
+      <b>document.write(text)</b> Write into the HTML output stream
+    </p>
+    <p>
+      Properties : <br />
+      <b>element.innerHTML</b> = new html content Change the inner HTML of an
+      element<br />
+      <b>element.innerText</b> = add new text<br />
+      <b>element.textContent</b> = add new text or content<br />
+      <b>element.style.property</b> = new style Change the style of an HTML
+      element
+    </p>
+    <div class="p-2 ex">
+      <span id="p2span"></span>
+
+      <script>
+        s = document.getElementById("p2span");
+        // document.write(s);
+
+        // s.innerHTML = `<b>Dholakia Jay</b>`;
+        // s.innerText = 'Dholakia Jay';
+        // s.textContent = '<i>Dholakia Jay</i>';
+      </script>
     </div>
 
-    <!-- Get Data -->
+    <hr />
+    <div class="p-3 ex">
+      <p>Methods</p>
+      <span id="pc">parent.children</span><br />
+      <span id="cc">child.children</span><br />
+      <span id="ca">child.children[0] </span><span id="ss1">[1]</span>
+      <span id="ss2">[2]</span> <span id="ss3">[3]</span
+      ><span>. . . (By Index)</span><br />
+      <span id="ccount">child.children.length</span><br />
+      <span id="cfirst">child.firstElementChild</span><br />
+      <span id="clast">child.lastElementChild</span><br />
+      <span id="cp">child.children[3].previousElementSibling</span><br />
+      <span id="cn">child.children[3].nextElementSibling</span><br />
+      <span id="scparent">child.children[3].parentElement</span><br />
+      <span id="cparent">child.parentElement</span>
 
-    <div class="container get-data">
-      <h3 class="title">Get Data From Element</h3>
-      <h3>Data List</h3>
-      <h3 id="jd">Data - 1</h3>
-      <h3 class="jd">Data - 2</h3>
-      <h3 name="jd">Data - 3</h3>
+      <span id="op"></span>
+      <div class="parent-box">
+        <div class="child-box">
+          <div class="sub-child" id="first">1</div>
+          <div class="sub-child" id="second">2</div>
+          <div class="sub-child" id="third">3</div>
+          <div class="sub-child" id="four">4</div>
+          <div class="sub-child" id="five">5</div>
+          <div class="sub-child" id="six">6</div>
+        </div>
+      </div>
+
+      <script>
+        parent = document.querySelector(".parent-box");
+        child = document.querySelector(".child-box");
+        sChild = document.querySelector(".sub-child");
+        console.log(parent);
+
+        console.log("parent child", parent.children);
+        console.log("child - sub -child", child.children);
+
+        console.log("child.children[0]", child.children[0]);
+        console.log("child.children[1]", child.children[1]);
+        console.log("child.children[2]", child.children[2]);
+        console.log("child.children[3]", child.children[3]);
+        console.log("child.children[4]", child.children[4]);
+        console.log("child.children[5]", child.children[5]);
+        console.log("Total Child  : ", child.children.length);
+
+        console.log("child.firstElementChild", child.firstElementChild);
+        console.log("child.lastElementChild", child.lastElementChild);
+
+        console.log(
+          "previousElementSibling",
+          child.children[3].previousElementSibling
+        );
+        console.log("nextElementSibling", child.children[1].nextElementSibling);
+
+        console.log("parent of sub child ", child.children[3].parentElement);
+        console.log("parent of child ", child.parentElement);
+        // console.log(child.childElementCount);
+
+        pc = document.getElementById("pc");
+        cc = document.getElementById("cc");
+        ca = document.getElementById("ca");
+        ccount = document.getElementById("ccount");
+        cfirst = document.getElementById("cfirst");
+        clast = document.getElementById("clast");
+        cp = document.getElementById("cp");
+        cn = document.getElementById("cn");
+        scparent = document.getElementById("scparent");
+        cparent = document.getElementById("cparent");
+
+        sc1 = document.getElementById("first");
+        sc2 = document.getElementById("second");
+        sc3 = document.getElementById("third");
+        sc4 = document.getElementById("four");
+        sc5 = document.getElementById("five");
+        sc6 = document.getElementById("six");
+        ss1 = document.getElementById("ss1");
+        ss2 = document.getElementById("ss2");
+        ss3 = document.getElementById("ss3");
+        op = document.getElementById("op");
+
+        pc.addEventListener("click", (e) => {
+          e.preventDefault();
+          child.style.cssText = `background-color:royalblue; border:3px solid black; transition:all 300ms; `;
+        });
+        cc.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc1.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+          sc2.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+          sc3.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+          sc4.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+          sc5.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+          sc6.style.cssText = `background-color:yellow; transition:all 300ms; border:3px solid black; transition:all 300ms;`;
+        });
+        ca.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc1.style.cssText = `background-color:orange; border:3px solid black; transition:all 300ms;`;
+        });
+        ss1.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc2.style.cssText = `background-color:orange; border:3px solid black; transition:all 300ms;`;
+        });
+
+        ss2.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc3.style.cssText = `background-color:orange; border:3px solid black; transition:all 300ms;`;
+        });
+
+        ss3.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc4.style.cssText = `background-color:orange; border:3px solid black; transition:all 300ms;`;
+        });
+
+        ccount.addEventListener("click", (e) => {
+          e.preventDefault();
+          op.innerText = child.children.length;
+          op.style.cssText = `font-size:63px; display:block;`;
+        });
+
+        cfirst.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc1.style.cssText = `background-color:red;  color:white; border:3px solid black; transition:all 300ms;`;
+        });
+        clast.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc6.style.cssText = `background-color:red; color:white;  border:3px solid black; transition:all 300ms;`;
+        });
+        cp.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc3.style.cssText = `background-color:red; color:white;  border:3px solid black; transition:all 300ms;`;
+        });
+        cn.addEventListener("click", (e) => {
+          e.preventDefault();
+          sc5.style.cssText = `background-color:red; color:white;  border:3px solid black; transition:all 300ms;`;
+        });
+        scparent.addEventListener("click", (e) => {
+          e.preventDefault();
+          child.style.cssText = `background-color:orange; border:3px solid black; transition:all 300ms; transform:scale(1.02);`;
+          sc1.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+          sc2.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+          sc3.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+          sc4.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+          sc5.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+          sc6.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(0.72);`;
+        });
+        cparent.addEventListener("click", (e) => {
+          e.preventDefault();
+          parent.style.cssText = `background-color:royalblue; transition:all 300ms; border:3px solid black;`;
+          child.style.cssText = `background-color:orange; transition:all 300ms; transform:scale(1);`;
+          sc1.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+          sc2.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+          sc3.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+          sc4.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+          sc5.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+          sc6.style.cssText = `background-color:white; transition:all 300ms;  transform:scale(1);`;
+        });
+      </script>
     </div>
+    <hr />
 
-    <!-- Interchange Data -->
+    <ul>
+      <p>Events</p>
+      <li>Click</li>
+      <li>Double Click</li>
+      <li>Mouse Over</li>
+      <li>Mouse Enter</li>
+      <li>Mouse Leave</li>
+      <li>Key Press</li>
+    </ul>
+    <div class="p-4 ex">
+      <button class="click">Click Me !</button>
+      <button class="dblclick">Double Click Me !</button>
+      <button class="mouseover">Mouse over . . .</button>
+      <button class="mouseenter">Enter Mouse . . .</button>
 
-    <div class="container interchange">
-      <h3 class="title">Interchange Data</h3>
-      <p id="q-1">Q - 1 What is your Name ? :</p>
-      <p id="q-2">Q - 2 What is your SurName ? :</p>
-      <p id="q-3">Q - 3 What is your Age ? :</p>
+      <script>
+        click = document.querySelector(".click");
 
-      <span id="a-1">Jay</span>
-      <span id="a-2">Dholakia</span>
-      <span id="a-3">25</span>
+        click.classList.remove("click");
+
+        click.addEventListener("click", () => {
+          console.log("ButtonClicked");
+          click.classList.add("click");
+        });
+
+        dblclick = document.querySelector(".dblclick");
+
+        dblclick.classList.remove("dblclick");
+
+        dblclick.addEventListener("dblclick", () => {
+          console.log("Button dbl - Clicked");
+          dblclick.classList.add("dblclick");
+        });
+
+        mo = document.querySelector(".mouseover");
+
+        mo.classList.remove("mouseover");
+
+        mo.addEventListener("mouseover", () => {
+          console.log("mouseover");
+          mo.classList.add("mouseover");
+        });
+
+        me = document.querySelector(".mouseenter");
+        me.classList.remove("mouseenter");
+
+        me.addEventListener("mouseenter", () => {
+          console.log("mouseneterd");
+          me.classList.add("mouseenter");
+        });
+      </script>
     </div>
-
-    <!-- Styling With JS -->
-
-    <div class="container JS-CSS">
-      <h3 class="title">JS With CSS</h3>
-      <div class="box" id="style-box"></div>
-      <div class="style-wrapper">
-        <button id="style-1">Style-1</button>
-        <button id="style-2">Style-2</button>
-        <button id="style-3">Style-3</button>
+    <hr />
+    <div class="p-5">
+      <div class="createboxcontainer">
+        <form>
+          <label>Box Height : <input type="text" name="height" /> </label>
+          <label>Box Width : <input type="text" name="width" /> </label>
+          <label>Box Border : <input type="text" name="border" /> </label>
+          <label>Box Margin : <input type="text" name="margin" /> </label>
+          <label>Select Color : <input type="color" name="color" /> </label>
+          <button id="addbox">Add</button>
+        </form>
+      </div>
+      <div class="styleboxcontainer">
+        <div class="stylebox" id="stylebox">Give Some Styling Me !. . .</div>
+        <ul>
+          <li><button id="style-1">Style-1</button></li>
+          <li><button id="style-2">Style-2</button></li>
+          <li><button id="style-3">Style-3</button></li>
+          <li><button id="style-4">Style-4</button></li>
+          <li><button id="style-5">Style-5</button></li>
+          <li><button id="style-6">Style-6</button></li>
+        </ul>
       </div>
     </div>
-
-    <!-- Create New HTML Element With JS  -->
-
-    <div class="container create-box-js">
-      <h3 class="title">Create Box With JS</h3>
-      <div class="box" id="jsbox"></div>
-      <form>
-        <input type="text" name="height" placeholder="height" required />
-        <input type="text" name="width" placeholder="width" required />
-        <input type="text" name="border" placeholder="border" required />
-        <input type="text" name="radius" placeholder="radius" required />
-        <input type="text" name="margin" placeholder="margin" required />
-        <input type="color" name="bgcolor" />
-        <button id="create-box">Create</button>
-      </form>
-    </div>
-
-    <div class="container" id="changecon">
-      <h3>Change Container Color With JS</h3>
-      <div class="changecon-wrapper">
-        <button
-          style="background-color: red; color: white; padding: 3px"
-          id="red"
+    <div class="next" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <a
+        href="JS-Practice.html"
+        style="text-decoration: none; outline: none; border: none"
+        ><button
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: red;
+            color: white;
+            font-weight: 600;
+            padding: 6px 18px;
+          "
         >
-          Red
-        </button>
-        <button
-          style="background-color: green; color: white; padding: 3px"
-          id="green"
-        >
-          Green
-        </button>
-        <button
-          style="background-color: blue; color: white; padding: 3px"
-          id="blue"
-        >
-          Blue
-        </button>
-      </div>
+          Next
+        </button></a
+      >
     </div>
-
-    <div class="container" id="select-ele">
-      <div class="parent">
-        Parent
-        <div class="child-1">
-          Child-1
-          <div class="sub-child">Sub-child-1</div>
-          <div class="sub-child">Sub-child-2</div>
-          <div class="sub-child">Sub-child-3</div>
-        </div>
-        <div class="child-2">
-          Child-2
-          <div class="sub-child">Sub-child-1</div>
-          <div class="sub-child">Sub-child-2</div>
-          <div class="sub-child">Sub-child-3</div>
-        </div>
-        <div class="child-3">
-          Child-3
-          <div class="sub-child">Sub-child-1</div>
-          <div class="sub-child">Sub-child-2</div>
-          <div class="sub-child">Sub-child-3</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container" id="get-set-Attribute">
-      <h4 class="heading">Jay</h4>
-      <h4 class="title-1">Dholakia</h4>
-      <h4 class="subtitle">25</h4>
-    </div>
-
-    <div class="container" id="set-class">
-      <h5 class="fname lname age">
-        <b>Jay Dholakia 25</b>
-      </h5>
-    </div>
-    <div class="container" id="html-via-js"></div>
     <script>
-      // Variable
-
-      console.log("Variable");
-
-      var name = "Jay ";
-      let surName = "Dholaka";
-      const age = 25;
-
-      console.log("name : ", name, "Surname : ", surName, "Age : ", age);
-
-      console.log(
-        "-----------------------------------------------------------------"
-      );
-
-      // Selectors
-      console.log("Selectors");
-      console.log('document.getElementById("")');
-      console.log('document.getElementsByName("")[0]');
-      console.log('document.getElementsByTagName("")[0]');
-      console.log('document.getElementsByClassName("")[0]');
-      console.log('document.querySelector("selector-name")');
-      console.log('document.querySelectorAll("selector-name")');
-
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // Get Data
-
-      id = document.getElementById("jd");
-      cname = document.getElementsByClassName("jd")[0];
-      nname = document.getElementsByName("jd")[0];
-      console.log("Get Data From Elements");
-      console.log(
-        "By Id : ",
-        id.innerText,
-        "By Class Name : ",
-        cname.innerText,
-        "By Name : ",
-        nname.innerText
-      );
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // InterChange Data
-
-      q1 = document.getElementById("q-1");
-      q2 = document.getElementById("q-2");
-      q3 = document.getElementById("q-3");
-
-      a1 = document.getElementById("a-1");
-      a2 = document.getElementById("a-2");
-      a3 = document.getElementById("a-3");
-
-      console.log(
-        q1.innerText + a1.innerText,
-        q2.innerText + a2.innerText,
-        q3.innerText + a3.innerText
-      );
-
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // Css with Js
-
+      stbox = document.getElementById("stylebox");
       style1 = document.getElementById("style-1");
       style2 = document.getElementById("style-2");
       style3 = document.getElementById("style-3");
+      style4 = document.getElementById("style-4");
+      style5 = document.getElementById("style-5");
+      style6 = document.getElementById("style-6");
 
-      s1 = "background-color:red; border-radius:36%; border:3px solid yellow;";
-      s2 = "background-color:yellow; border-radius:63%; border:6px solid blue;";
-      s3 = "background-color:gold; border-radius:72%; border:9px solid black;";
+      st1 = `background-color:whitesomke; border:3px solid black; border-radius:12px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; `;
+      st2 = `background-color:skyblue; border:1px solid white; border-radius:24px; box-shadow: silver 0px 50px 100px -20px, black 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;`;
+      st3 = `background-color:gold; border:1px solid cyan; border-radius:30%; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; `;
+      st4 = ` color: white; background-color:tomato; border:1px solid orange; border-radius:100%; box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; `;
+      st5 = ` color:red; background-color:yellow; border:6px solid tomato; border-radius:9%; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;`;
+      st6 = `background-color:blue; border:1px solid skyblue; border-radius:18%; box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; color:white;`;
 
-      stylebox = document.getElementById("style-box");
-
-      style1.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        stylebox.style.cssText = s1;
+      style1.addEventListener("click", () => {
+        stbox.style.cssText = st1;
+        stbox.innerText = "Style-1";
       });
 
-      style2.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        stylebox.style.cssText = s2;
+      style2.addEventListener("click", () => {
+        stbox.style.cssText = st2;
+        stbox.innerText = "Style-2";
       });
 
-      style3.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        stylebox.style.cssText = s3;
+      style3.addEventListener("click", () => {
+        stbox.style.cssText = st3;
+        stbox.innerText = "Style-3";
       });
 
-      // q1.innerText += a1.innerText;
-      // q2.innerText += a2.innerText;
-      // q3.innerText += a3.innerText;
+      style4.addEventListener("click", () => {
+        stbox.style.cssText = st4;
+        stbox.innerText = "Style-4";
+      });
 
-      // console.log("Interchange Data");
+      style5.addEventListener("click", () => {
+        stbox.style.cssText = st5;
+        stbox.innerText = "Style-5";
+      });
 
-      // console.log(q1.innerText, q2.innerText, q3.innerText);
-
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // Create Box With JS
-
+      style6.addEventListener("click", () => {
+        stbox.style.cssText = st6;
+        stbox.innerText = "Style-6";
+      });
+    </script>
+    <script>
+      p5 = document.querySelector(".p-5");
+      con = document.querySelector(".createboxcontainer");
       h = document.getElementsByName("height")[0];
       w = document.getElementsByName("width")[0];
       b = document.getElementsByName("border")[0];
-      r = document.getElementsByName("radius")[0];
       m = document.getElementsByName("margin")[0];
-      c = document.getElementsByName("bgcolor")[0];
-      btn = document.getElementById("create-box");
+      c = document.getElementsByName("color")[0];
+      addbtn = document.getElementById("addbox");
 
-      cbox = document.getElementById("jsbox");
-
-      btn.addEventListener("click", (e) => {
+      addbtn.addEventListener("click", (e) => {
         e.preventDefault();
-
-        cbox.style.cssText = `
-      height:${h.value};
-      width:${w.value};
-      border:${b.value};
-      border-radius:${r.value};
-      margin:${m.value};
-      background-color:${c.value};
-      `;
+        newElebox = document.createElement("div");
+        newElebox.style.cssText = `height:${h.value}; width:${w.value}; border:${b.value}; margin:${m.value}; background-color:${c.value};`;
+        con.append(newElebox);
       });
-
-      // Create Element...
-      firstEle = document.createElement("span");
-      secondEle = document.createElement("span");
-      thirdEle = document.createElement("span");
-      fourthEle = document.createElement("span");
-      fifthEle = document.createElement("span");
-      sixthEle = document.createElement("span");
-      // Create in Class in Created Element...
-      firstEle.classList.add("name");
-      secondEle.classList.add("surname");
-      thirdEle.classList.add("age");
-      fourthEle.classList.add("address");
-      fifthEle.classList.add("pin");
-      sixthEle.classList.add("area");
-      // Add Text In Created Elemet...
-      firstEle.innerText = "Jay";
-      secondEle.innerText = "dholakia";
-      thirdEle.innerText = "25";
-      fourthEle.innerText = "Rajkot";
-      fifthEle.innerText = "360007";
-      sixthEle.innerText = "150ft Road";
-      // Print...
-      console.log(firstEle);
-      console.log(secondEle);
-      console.log(thirdEle);
-      console.log(fourthEle);
-      console.log(fifthEle);
-      console.log(sixthEle);
-
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // HTML Via JS
-
-      const con = document.getElementById("html-via-js");
-      con.innerHTML = "<b>Already Some Text Is Here !!! </b>";
-      con.style.cssText = `height:300px; width:200px; border:1px solid grey;`;
-
-      //Before Tag
-      con.before(firstEle);
-
-      // Before Existing Content...
-      con.prepend(secondEle);
-      con.prepend(thirdEle);
-
-      // After Existing Content...
-      con.append(fourthEle);
-      con.append(fifthEle);
-
-      // After Tag
-      con.after(sixthEle);
-
-      console.log(
-        "-------------------------------------------------------------------"
-      );
-
-      // Change BG With JS
-
-      changecon = document.getElementById("changecon");
-      changebtn1 = document.getElementById("red");
-      changebtn2 = document.getElementById("green");
-      changebtn3 = document.getElementById("blue");
-
-      changebtn1.addEventListener("click", (e) => {
-        e.preventDefault();
-        changecon.style.backgroundColor = `red`;
-        changecon.style.color = `white`;
-      });
-      changebtn2.addEventListener("click", (e) => {
-        e.preventDefault();
-        changecon.style.backgroundColor = `green`;
-        changecon.style.color = `white`;
-      });
-      changebtn3.addEventListener("click", (e) => {
-        e.preventDefault();
-        changecon.style.backgroundColor = `blue`;
-        changecon.style.color = `white`;
-      });
-
-      // Select Ele
-
-      const parentEle = document.getElementsByClassName("parent")[0];
-
-      console.log("Father Of this Element ", parentEle.parentElement);
-      console.log("Child of this Element ", parentEle.children);
-      console.log("First Child ", parentEle.firstChild);
-      console.log("First Child Element ", parentEle.firstElementChild);
-      console.log("Last Child ", parentEle.lastChild);
-      console.log("Last Child Element", parentEle.lastElementChild);
-      console.log("First Child Index", parentEle.children[0]);
-      console.log(
-        "First Child Next Element ",
-        parentEle.children[0].nextElementSibling
-      );
-      console.log(
-        "Second Child Next Element ",
-        parentEle.children[1].nextElementSibling
-      );
-      console.log(
-        "Third Child Previous Element ",
-        parentEle.children[2].previousElementSibling
-      );
-      console.log(
-        "Second Child Next Element ",
-        parentEle.children[1].previousElementSibling
-      );
-      console.log("Child Count total of child ", parentEle.childElementCount);
-
-      // Get Set Attribute
-
-      const heading = document.getElementsByTagName("h4")[0];
-      const title = document.getElementsByTagName("h4")[1];
-      const subtitle = document.getElementsByTagName("h4")[2];
-      console.log(heading, title, subtitle);
-
-      console.log("Get Attribute Class Name :", heading.getAttribute("class"));
-      console.log("Get Attribute Class Name :", title.getAttribute("class"));
-      console.log("Get Attribute Class Name :", subtitle.getAttribute("class"));
-
-      heading.setAttribute("name", "heading-1");
-      title.setAttribute("name", "title-1");
-      subtitle.setAttribute("name", "subtitle-1");
-
-      console.log("Get Attribute Name : ", heading.getAttribute("name"));
-      console.log("Get Attribute Name : ", title.getAttribute("name"));
-      console.log("Get Attribute Name : ", subtitle.getAttribute("name"));
-
-      heading.removeAttribute("name");
-      title.removeAttribute("name");
-      subtitle.removeAttribute("name");
-
-      console.log(heading, title, subtitle);
-
-      console.log(heading.innerText, title.innerText, subtitle.innerText);
-
-      //  Set Classes with JS
-
-      cname = document.getElementsByTagName("h5")[0];
-
-      // As String
-      console.log("Class List As String :", cname.className);
-
-      // As Array List not Array
-      console.log("Class Name Like ArrayList : ", cname.classList);
-
-      console.log("Class Name By Index :", cname.classList[0]);
-      console.log("Class Name By Index :", cname.classList[1]);
-      console.log("Class Name By Index :", cname.classList[2]);
-
-      // Add Class
-
-      cname.classList.add("address");
-      console.log("Class Name By Index : ", cname.classList[3]);
-
-      // Remove Class
-      cname.classList.remove("address");
-      console.log(cname);
-
-      // ADD Multiple Class
-      cname.classList.add("area", "pincode", "city");
-
-      console.log(cname);
-
-      //  Remove Multiple Class
-      cname.classList.remove("area", "pincode", "city");
-      console.log(cname);
     </script>
   </body>
 </html>
