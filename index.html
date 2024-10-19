@@ -150,6 +150,27 @@
           rgba(17, 17, 26, 0.1) 0px 8px 24px,
           rgba(17, 17, 26, 0.1) 0px 16px 56px;
       }
+      .class1 {
+        height: 300px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border-radius: 12px;
+        font-weight: 900;
+        background: rgb(63, 94, 251);
+        background: radial-gradient(
+          circle,
+          rgba(63, 94, 251, 1) 0%,
+          rgba(252, 70, 107, 1) 100%
+        );
+      }
+      .class2 {
+        height: 300px;
+        width: 300px;
+        border: 3px solid black;
+      }
     </style>
   </head>
   <body>
@@ -437,7 +458,36 @@
       </script>
     </div>
     <hr />
+    <button id="addclass">Add Class</button>
+    <button id="removeclass">Remove Class</button>
+    <div class="boxclass class2" id="c-box"></div>
+    <script>
+      classBox = document.getElementById("c-box");
+      addclass = document.getElementById("addclass");
+      removeclass = document.getElementById("removeclass");
 
+      addclass.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        classBox.classList.remove("class2");
+        classBox.classList.add("class1");
+
+        classBox.innerText = "Class Added . . .";
+      });
+
+      removeclass.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        classBox.classList.remove("class1");
+        classBox.classList.add("class2");
+
+        classBox.style.cssText = `display:flex; justify-content:center; align-items:center;`;
+        classBox.innerText = "Class Removed . . .";
+        s
+      });
+    </script>
+    <hr />
+    <!-- Class List  -->
     <ul>
       <p>Events</p>
       <li>Click</li>
@@ -487,6 +537,7 @@
         me.addEventListener("mouseenter", () => {
           console.log("mouseneterd");
           me.classList.add("mouseenter");
+          
         });
       </script>
     </div>
@@ -514,7 +565,15 @@
         </ul>
       </div>
     </div>
-    <div class="next" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+    <div
+      class="next"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
       <a
         href="JS-Practice.html"
         style="text-decoration: none; outline: none; border: none"
